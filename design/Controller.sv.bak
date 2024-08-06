@@ -32,7 +32,7 @@ module Controller (
   assign SYSCALL   = 7'b1110011;  // HALT
 
   //assign ALUSrc   = (Opcode == LOAD || Opcode == STORE);
-  assign ALUSrc   = (Opcode == IMMEDIATE);
+  assign ALUSrc   = (Opcode == LOAD || Opcode == STORE || Opcode == IMMEDIATE);
   assign MemtoReg = (Opcode == LOAD);
   assign RegWrite = (Opcode == R_TYPE || Opcode == LOAD);
   assign MemRead  = (Opcode == LOAD);
