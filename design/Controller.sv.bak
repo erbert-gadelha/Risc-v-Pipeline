@@ -21,24 +21,17 @@ module Controller (
 
   logic [6:0] R_TYPE, LW, SW, BR;
 
-  assign R_TYPE    = 7'b0110011;  // [R_TYPE] add,and (diferenciar pelo campo funct3 e funct7)
-  assign LOAD      = 7'b0000011;  // [I-TYPE] LB, LH, LW, LBU, LHU
-  assign STORE     = 7'b0100011;  // [S-TYPE] SB, SH, SW
-  assign BRANCH    = 7'b1100011;  // [B-TYPE] BEQ, BNE, BLT, BGE, ...
-  assign IMMEDIATE = 7'b0010011;  // [I-TYPE] ADDI, XORI, ... 
-  assign JAL       = 7'b1101111;  // [J-TYPE]
-  assign JALR      = 7'b1101111;  // [J-TYPE]
-  assign LUI       = 7'b1101111;  // [U-TYPE]
-  assign SYSCALL   = 7'b1110011;  // HALT
+  assign R_TYPE = 7'b0110011;  //add,and
+  assign LW = 7'b0000011;  //lw
+  assign SW = 7'b0100011;  //sw
+  assign BR = 7'b1100011;  //beq
 
-  //assign ALUSrc   = (Opcode == LOAD || Opcode == STORE);
-  assign ALUSrc   = (Opcode == LOAD || Opcode == STORE || Opcode == IMMEDIATE);
-  assign MemtoReg = (Opcode == LOAD);
-  assign RegWrite = (Opcode == R_TYPE || Opcode == LOAD);
-  assign MemRead  = (Opcode == LOAD);
-  assign MemWrite = (Opcode == STORE);
-  assign ALUOp[0] = (Opcode == BRANCH);
+  assign ALUSrc = (Opcode == LW || Opcode == SW);
+  assign MemtoReg = (Opcode == LW);
+  assign RegWrite = (Opcode == R_TYPE || Opcode == LW);
+  assign MemRead = (Opcode == LW);
+  assign MemWrite = (Opcode == SW);
+  assign ALUOp[0] = (Opcode == BR);
   assign ALUOp[1] = (Opcode == R_TYPE);
-  assign Branch   = (Opcode == BRANCH);
-
+  assign Branch = (Opcode == BR);
 endmodule
