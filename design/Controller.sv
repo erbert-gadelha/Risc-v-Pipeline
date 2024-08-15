@@ -25,6 +25,10 @@ module Controller (
   assign LW = 7'b0000011;  //lw
   assign SW = 7'b0100011;  //sw
   assign BR = 7'b1100011;  //beq
+  assign IMMEDIATE = 7'b0010011; //addi, andi, etc
+  assign HALT = 7'b1110101;
+	
+
 
   assign ALUSrc = (Opcode == LW || Opcode == SW);
   assign MemtoReg = (Opcode == LW);
@@ -32,6 +36,7 @@ module Controller (
   assign MemRead = (Opcode == LW);
   assign MemWrite = (Opcode == SW);
   assign ALUOp[0] = (Opcode == BR);
-  assign ALUOp[1] = (Opcode == R_TYPE);
+  assign ALUOp[1] = (Opcode == R_TYPE || Opcode == IMMEDIATE);
   assign Branch = (Opcode == BR);
+  assign Halt = (Opcode == HALT);
 endmodule
