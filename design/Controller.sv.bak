@@ -25,6 +25,10 @@ module Controller (
   assign LW = 7'b0000011;  //lw
   assign SW = 7'b0100011;  //sw
   assign BR = 7'b1100011;  //beq
+  assign IMMEDIATE = 7'b0010011; //addi, andi, etc
+  assign HALT = 7'b1110101;
+	
+
 
   assign ALUSrc = (Opcode == LW || Opcode == SW);
   assign MemtoReg = (Opcode == LW);
