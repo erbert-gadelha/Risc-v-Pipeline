@@ -30,9 +30,9 @@ module Controller (
 	
 
 
-  assign ALUSrc = (Opcode == LW || Opcode == SW);
+  assign ALUSrc = (Opcode == LW || Opcode == SW || Opcode == IMMEDIATE);
   assign MemtoReg = (Opcode == LW);
-  assign RegWrite = (Opcode == R_TYPE || Opcode == LW);
+  assign RegWrite = (Opcode == R_TYPE || Opcode == LW || IMMEDIATE);
   assign MemRead = (Opcode == LW);
   assign MemWrite = (Opcode == SW);
   assign ALUOp[0] = (Opcode == BR);
